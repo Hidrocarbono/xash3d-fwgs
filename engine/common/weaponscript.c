@@ -388,3 +388,52 @@ void WeaponScript_LoadAll( void )
 	if( FS_FileExists( "weapon_m4a2.txt", false ) )
 		WeaponScript_ParseWeapon( "weapon_m4a2.txt" );
 }
+
+
+// ---------------------------------------------------------------------------
+// Console commands (Fase 3): lets you test the parser without a mod.
+// ---------------------------------------------------------------------------
+
+static void WeaponScript_Reload_f( void )
+{
+	WeaponScript_LoadAll();
+	Con_Printf( "WeaponScript: loaded %d weapons, %d ammo types, %d pickups\n",
+		gNumWeaponInfo, gNumAmmoInfo, gNumAmmoPickups );
+}
+
+static void WeaponScript_List_f( void )
+{
+	int i;
+	Con_Printf( "WeaponScript: %d weapons\n", gNumWeaponInfo );
+	for( i = 0; i < gNumWeaponInfo; i++ )
+	{
+		weaponinfo_t *w = &gWeaponInfo[i];
+		Con_Printf( "  [%d] %s (clip %d, ammo '%s', %d sprites)\n",
+			i, w->viewmodel, w->clip_size, w->primary_ammo, w->num_sprites );
+	}
+	Con_Printf( "WeaponScript: %d ammo types\n", gNumAmmoInfo );
+	for( i = 0; i < gNumAmmoInfo; i++ )
+	{
+		ammoinfo_t *a = &gAmmoInfo[i];
+		if( a->MaxCarry )
+			Con_Printf( "  [%d] %s (carry %d, pDmg %d, mDmg %d)\n",
+				i, a->name, a->MaxCarry, a->PlayerDamage, a->MonsterDamage );
+		else
+			Con_Printf( "  [%d] %s (dmg %d, shots %d)\n",
+				i, a->name, a->Damage, a->NumShots );
+	}
+	Con_Printf( "WeaponScript: %d ammo pickups\n", gNumAmmoPickups );
+	for( i = 0; i < gNumAmmoPickups; i++ )
+	{
+		Con_Printf( "  [%d] %s -> '%s' x%d\n",
+			i, gAmmoPickups[i].classname, gAmmoPickups[i].type, gAmmoPickups[i].count );
+	}
+}
+
+void WeaponScript_Init( void )
+{
+	Cmd_AddCommand( "weaponscript_reload", WeaponScript_Reload_f,
+		"Brother Hermes: (re)load ammodesc.txt and weapon_*.txt scripts" );
+	Cmd_AddCommand( "weaponscript_list", WeaponScript_List_f,
+		"Brother Hermes: list loaded weapons/ammo from scripts" );
+}
