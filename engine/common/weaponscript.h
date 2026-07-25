@@ -1,6 +1,6 @@
 /*
 weaponscript.h - data-driven weapon/ammo script system (Xash Weapon System)
-Copyright (C) 2026 Hidrocarbono
+Copyright (C) 2026 Brother Hermes - sistema de armas por script, por Hermes e Hidrocarboneto
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
