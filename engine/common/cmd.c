@@ -1424,6 +1424,8 @@ Cmd_Init
 
 ============
 */
+#include "weaponscript.h"
+
 void Cmd_Init( void )
 {
 	cmd_pool = Mem_AllocPoolExt( "Console Commands", MEM_SMALL_ALLOC_OPT );
@@ -1454,6 +1456,9 @@ void Cmd_Init( void )
 	Cmd_AddRestrictedCommand( "basecmd_test", BaseCmd_Test_f, "test basecmd" );
 	Cmd_AddCommand( "exec", Cmd_Exec_f, "execute a script file" );
 	Cmd_AddRestrictedCommand( "userconfigd", Cmd_Userconfigd_f, "execute all scripts from userconfig.d" );
+
+	// Brother Hermes: register weapon script system console commands
+	WeaponScript_Init();
 }
 
 void Cmd_Shutdown( void )

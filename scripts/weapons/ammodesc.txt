@@ -1,0 +1,57 @@
+/*
+ammodesc.txt - description of ammo types and ammo entities
+Example script for the Xash Weapon System (Hidrocarbono fork).
+Format follows Uncle Mike's Paranoia 2 scripts so existing mods import as-is.
+*/
+
+ammoinfo
+{
+	name		"m16"
+	MaxCarry	200
+	PlayerDamage	20
+	MonsterDamage	12
+	ShellModel	"models/aks_shell.mdl"
+}
+
+ammoinfo
+{
+	name		"ak"
+	MaxCarry	120
+	PlayerDamage	20
+	MonsterDamage	12
+	ShellModel	"models/aks_shell.mdl"
+}
+
+ammoinfo
+{
+	name		"buckshot"
+	MaxCarry	125
+	Damage		10
+	Distance	2048
+	NumShots	5
+	ShellModel	"models/spas12_shell.mdl"
+}
+
+ammo_m16
+{
+	model	"models/w_m4a1ammo.mdl"
+	sound	"items/default.wav"
+	type	"m16"
+	count	30
+}
+
+ammo_ak74
+{
+	model	"models/w_ak74ammo.mdl"
+	sound	"items/default.wav"
+	type	"ak"
+	count	30
+}
+
+ammo_buckshot
+{
+	model	"models/w_shotbox.mdl"
+	sound	"items/default.wav"
+	type	"buckshot"
+	count	12
+}

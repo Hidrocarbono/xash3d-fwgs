@@ -1,0 +1,71 @@
+/*
+weapon_m4a2.txt - weapon description file (Xash Weapon System)
+Example script for the Hidrocarbono fork. Format follows Uncle Mike's
+Paranoia 2 scripts so existing mods import as-is.
+*/
+
+WeaponData
+{
+	"viewmodel"	"models/v_m4a2.mdl"
+	"playermodel"	"models/w_m4a2.mdl"
+	"worldmodel"	"models/p_m4a2.mdl"
+	"anim_prefix"	"mp5"
+	"bucket"	"4"
+	"bucket_position"	"3"
+	"clip_size"	"30"
+	"defaultammo"	"30"
+	"primary_ammo"	"m16"
+	"secondary_ammo" 	"none"
+	"weight"		"15"
+	"SpreadTime"	"0.3"
+	"item_flags"	"IronSight|AutoAim|AutoFire"
+	"MaxSpeed"	"55"
+	"MaxSpeedIS"	"40"
+	"volume"		"normal"
+	"flash"		"normal"
+}
+
+PrimaryAttack
+{
+	"action"		"ammo1"
+	"nextattack"	"0.1"
+	"PunchAngle"	"1..1.2" "-0.5..0.5" "0"
+	SpreadRange	"1..2"
+	SpreadExpand	0.1
+	"PunchAngleIS"	"0.5..1.0" "-0.5..0.3" "0"
+	SpreadRangeIS	"1..1.5"
+	SpreadExpandIS	0.1
+}
+
+SecondaryAttack
+{
+	"action"		"IronSight"
+	"nextattack"	"-1"
+}
+
+SoundData
+{
+	"shootsound1"	"weapons/sg552-1.wav"
+	"shootsound1"	"weapons/sg552-2.wav"
+	"emptysound"	"weapons/w_empty.wav"
+}
+
+"hudsprite"
+{
+	"name"		"weapon"
+	"file"		"sprites/weapon_m4.spr"
+	"x"		"0"
+	"y"		"64"
+	"width"		"256"
+	"height"	"64"
+}
+
+"hudsprite"
+{
+	"name"		"weapon_s"
+	"file"		"sprites/weapon_m4.spr"
+	"x"		"0"
+	"y"		"0"
+	"width"		"256"
+	"height"	"64"
+}
