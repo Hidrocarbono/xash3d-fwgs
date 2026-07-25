@@ -404,11 +404,18 @@ int WeaponScript_ParseWeapon( const char *filename )
 
 void WeaponScript_LoadAll( void )
 {
-	// Default script locations. The mod may call the single-file parsers
-	// directly with its own paths; these are the upstream defaults.
-	WeaponScript_ParseAmmoDesc( "ammodesc.txt" );
-	if( FS_FileExists( "weapon_m4a2.txt", false ) )
-		WeaponScript_ParseWeapon( "weapon_m4a2.txt" );
+	// Default script locations, relative to the game directory (gamedir).
+	// Matches where mods keep them: scripts/weapons/ammodesc.txt and
+	// scripts/weapons/weapon_*.txt  (e.g. valve/scripts/weapons/...)
+	WeaponScript_ParseAmmoDesc( "scripts/weapons/ammodesc.txt" );
+
+	search_t *list = FS_Search( "scripts/weapons/weapon_*.txt", true, false );
+	if( list )
+	{
+		for( int i = 0; i < list->numfilenames; i++ )
+			WeaponScript_ParseWeapon( list->filenames[i] );
+		Mem_Free( list );
+	}
 }
 
 
