@@ -208,6 +208,30 @@ static void WS_ApplyWeaponData( void *out, const char *key, const char *val )
 	else if( !Q_stricmp( key, "flash" ) ) Q_strncpy( w->flash, val, sizeof( w->flash ) );
 }
 
+
+// Parse a "x..y" "z..w" "k" style triple (three quoted subs in one value) into 3 mids.
+static void WS_ParseTriple( const char *s, float *out )
+{
+	char buf[256];
+	Q_strncpy( buf, s, sizeof( buf ) );
+	// split by '"' into up to 3 tokens
+	char *tok = strtok( buf, "\"" );
+	int n = 0;
+	while( tok && n < 3 )
+	{
+		// skip leading spaces
+		while( *tok == ' ' ) tok++;
+		if( *tok )
+		{
+			float lo, hi;
+			WS_ParseRange( tok, &lo, &hi );
+			out[n++] = (lo + hi) * 0.5f;
+		}
+		tok = strtok( NULL, "\"" );
+	}
+	while( n < 3 ) out[n++] = 0;
+}
+
 static void WS_ApplyAttack( void *out, const char *key, const char *val )
 {
 	weaponattack_t *at = (weaponattack_t *)out;
@@ -217,9 +241,7 @@ static void WS_ApplyAttack( void *out, const char *key, const char *val )
 	else if( !Q_stricmp( key, "PunchAngle" ) )
 	{
 		// "a..b" "c..d" "e"
-		float v[3] = { 0, 0, 0 };
-		WS_ParseRange( val, &lo, &hi ); v[0] = (lo + hi) * 0.5f;
-		char *t2 = WS_NextToken( &((char *){0}) ); // unused placeholder
+		WS_ParseTriple( val, at->PunchAngle );
 	}
 	else if( !Q_stricmp( key, "PunchAngleIS" ) )
 	{
