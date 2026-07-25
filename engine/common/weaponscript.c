@@ -1,6 +1,6 @@
 /*
 weaponscript.c - data-driven weapon/ammo script system (Xash Weapon System)
-Copyright (C) 2026 Hidrocarbono
+Copyright (C) 2026 Brother Hermes - sistema de armas por script, por Hermes e Hidrocarboneto
 
 Parser for Uncle Mike's Paranoia 2 script format:
   ammodesc.txt -> ammoinfo { }  and  ammo_<name> { }
