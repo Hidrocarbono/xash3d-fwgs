@@ -11,7 +11,7 @@ Scripts are line-oriented key/value pairs inside { } blocks.
 
 #include "common.h"
 #include "crtlib.h"
-#include "filesystem/filesystem.h"
+#include "filesystem.h"
 #include "weaponscript.h"
 
 ammoinfo_t	gAmmoInfo[MAX_AMMO_TYPES];
