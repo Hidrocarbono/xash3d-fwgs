@@ -117,4 +117,8 @@ int  WeaponScript_ParseAmmoDesc( const char *filename );
 int  WeaponScript_ParseWeapon( const char *filename );
 void WeaponScript_LoadAll( void );
 
+ammoinfo_t *WeaponScript_FindAmmo( const char *name );
+weaponinfo_t *WeaponScript_FindWeapon( const char *name );
+void WeaponScript_Init( void );
+
 #endif // WEAPONSCRIPT_H
